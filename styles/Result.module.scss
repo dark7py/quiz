@@ -1,0 +1,30 @@
+.mainBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  height: 350px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgb(78,255,247);
+  background: linear-gradient(0deg, rgba(78,255,247,1) 11%, rgba(238,246,255,1) 96%);
+
+  & h1 {
+    font-size: 36px;
+  }
+}
+
+.result {
+  font-size: 26px;
+
+  & span {
+    color: #00309e;
+  }
+}
+
+.block {
+  & p {
+    font-size: 20px;
+  }
+}

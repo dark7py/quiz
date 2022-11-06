@@ -1,0 +1,15 @@
+.skipBtn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+
+  color: #006666;
+
+  &:hover {
+    color: #0acaca;
+  }
+
+  &:active {
+  }
+}

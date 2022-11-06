@@ -1,0 +1,56 @@
+.sidebar {
+  width: 5%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  flex-direction: column;
+
+  &_close .sidebar_list {
+    display: none;
+  }
+
+  &_close .arrow img {
+    rotate: 180deg;
+    width: 15px;
+  }
+
+  &_close .arrow {
+    position: absolute;
+    margin-left: 5px;
+    width: 30px;
+  }
+
+  &_list {
+    align-self: center;
+    font-size: 18px;
+    text-align: center;
+    color: #006666;
+    width: 34px;
+  }
+
+  &_item {
+    border-bottom: 1px solid #E0E0E0;
+    padding: 12px 0;
+    cursor: pointer;
+
+    &_selected {
+      color: #00EAD9;
+    }
+  }
+
+  &_item:hover {
+    color: #04b7b7;
+  }
+
+
+  &_item:nth-last-child(1) {
+    border: none;
+  }
+
+}
+
+.arrow {
+  margin: 50px auto;
+  cursor: pointer;
+}
