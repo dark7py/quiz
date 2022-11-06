@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function () {
+export default function Error() {
     return (
         <div style={{margin: "50px "}}>
             <h1>Произошла ошибка...</h1>

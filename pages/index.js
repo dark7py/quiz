@@ -21,7 +21,7 @@ export default function Home() {
           <Link href={'/quiz'}>
             <a  className={styles.card}>
               <h2>Quiz &rarr;</h2>
-              <p>let's solve a next quiz</p>
+              <p>let&apos;s solve a next quiz</p>
             </a>
           </Link>
           <Link href={'/map'}>

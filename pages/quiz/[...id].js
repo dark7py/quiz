@@ -30,7 +30,7 @@ export default function Id({questionsCounter, quizIndex}) {
                         totalTimeInMin={quiz.timeLimitInMin} quizIndex={quizIndex}/>
                 <ProgressBar countQuestions={quiz.questionsCount} answeredQuestions={questionsCounter}
                              quizIndex={quizIndex}/>
-                {quiz.isFreeAccess ? <Sidebar countQuestions={25} quizIndex={quizIndex}/> : ''}
+                {quiz.isFreeAccess ? <Sidebar countQuestions={25} quizIndex={quizIndex} /> : ''}
 
                 <div className={styles.mainBlock} key={questionsCounter}>
                     <Timer timeInSec={10} onFinish={() => {

@@ -20,8 +20,8 @@ export default function Sidebar(props) {
             </div>
             <div className={style.sidebar_list}>
                 {data.quiz[props.quizIndex].questions.map(({id}) => (
-                    <Link href={`/quiz/${props.quizIndex}/answer/${id}`}>
-                        <div className={style.sidebar_item} key={id}>
+                    <Link href={`/quiz/${props.quizIndex}/answer/${id}`} key={id}>
+                        <div className={style.sidebar_item} >
                             {id}
                         </div>
                     </Link>
