@@ -6,7 +6,7 @@ import {AnswerButton} from "../../../components/buttons/AnswerButton";
 
 export default function Result(props) {
     const onClickHandler = async () => {
-        await router.push(`/quiz/1`)
+        await router.push(`/quiz/1/answer/1`)
     }
 
     return (

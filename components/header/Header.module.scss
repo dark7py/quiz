@@ -12,6 +12,8 @@
     color: #828282;
     margin: 0 auto;
     flex-grow: 3;
+    position: relative;
+    right: 80px;
   }
 
 
@@ -29,6 +31,7 @@
 
   &_hint {
     margin-right: 3%;
+    cursor: pointer;
   ;
   }
 }

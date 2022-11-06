@@ -1,7 +1,7 @@
 .sidebar {
   width: 5%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   display: flex;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   flex-direction: column;

@@ -7,7 +7,7 @@ export function RadioButton(props) {
 
 
     return (
-        <div id={id} key={id} className={`${styles.btn}
+        <div className={`${styles.btn}
         ${isDisabled ? styles.btn_disabled : styles.btn}`}
              onClick={onClick}>
             <div className={styles.radio}>

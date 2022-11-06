@@ -1,18 +1,37 @@
-.body {
-  //background: rgb(255,255,255);
-  //background: linear-gradient(141deg, rgba(255,255,255,1) 82%, rgba(228,255,254,0.49653364763874297) 87%, rgba(55,236,227,0.5217437316723564) 99%);
-
+.header {
+  text-align: center;
 }
 
-.mainBlock {
+.cards {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 50px;
+  margin: 10px 50px;
+
+  .card {
+    background-color: #202020;
+    text-align: center;
+    padding: 20px 40px;
+    border-radius: 15px;
+    color: #ffffff;
+  }
+
+  h2 {
+    color: #00EAD9;
+  }
+
+  .link {
+    width: 120px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+    cursor: pointer;
+    margin: 10px auto;
+
+
+    &:hover {
+      background-color: #00EAD9;
+    }
+  }
 
 }
-
-
-
-.block {
-}
-

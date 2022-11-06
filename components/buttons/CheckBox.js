@@ -13,7 +13,7 @@ export function CheckBox(props) {
     return (
         <div className={`${styles.btn}
         ${props.isDisabled ? styles.btn_disabled : styles.btn}`
-        } onClick={() => {!props.isDisabled && setSelected(!selected)}} id={props.id}>
+        } onClick={() => {!props.isDisabled && setSelected(!selected); props.onClick()}} >
             <div className={styles.radio}>
                 <div className={selected ? styles.btn_selected : styles.btn__radio}>
                     {(selected)

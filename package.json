@@ -15,7 +15,8 @@
     "react-countdown-circle-timer": "^3.0.9",
     "react-dom": "18.2.0",
     "react-h5-audio-player": "^3.8.6",
-    "react-leaflet": "^4.1.0"
+    "react-leaflet": "^4.1.0",
+    "sass": "^1.56.0"
   },
   "devDependencies": {
     "eslint": "8.23.1",

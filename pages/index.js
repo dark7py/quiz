@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <div className={styles.grid}>
-          <Link href={'/quiz/1'}>
+          <Link href={'/quiz'}>
             <a  className={styles.card}>
               <h2>Quiz &rarr;</h2>
               <p>let's solve a next quiz</p>

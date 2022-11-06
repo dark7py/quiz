@@ -19,8 +19,8 @@ export default function Sidebar(props) {
                 <img src={'/arrow-left.png'} alt={'arrow'}/>
             </div>
             <div className={style.sidebar_list}>
-                {data.questions.map(({id}) => (
-                    <Link href={`/quiz/${id}`}>
+                {data.quiz[props.quizIndex].questions.map(({id}) => (
+                    <Link href={`/quiz/${props.quizIndex}/answer/${id}`}>
                         <div className={style.sidebar_item} key={id}>
                             {id}
                         </div>

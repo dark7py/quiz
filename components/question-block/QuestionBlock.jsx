@@ -5,16 +5,16 @@ import {useState} from "react";
 import data from "../../mock";
 import SkipButton from "../buttons/SkipButton";
 import {useRouter} from "next/router";
-import Image from "next/Image"
-import {quizScore, setQuizScore} from "../../store/store";
+import {setQuizScore} from "../../store/store";
 import AudioPlayer from "react-h5-audio-player";
 import 'react-h5-audio-player/lib/styles.css';
+import {CheckBox} from "../buttons/CheckBox";
 
 export default function QuestionBlock(props) {
-    const {questionsCounter, countQuestions, active} = props
+    const {questionsCounter, quizIndex, countQuestions, active} = props
 
     let currentQuestion = {}
-    data.questions.forEach((question) => {
+    data.quiz[quizIndex].questions.forEach((question) => {
         if (question.id == questionsCounter) {
             currentQuestion = question
         }
@@ -30,17 +30,31 @@ export default function QuestionBlock(props) {
         }))
 
         setDisableBtn(false)
+    }
 
+    const onClickCheckboxAnswerHandler = (id) => {
+        setAnswers(answers.map((elem, index) => {
+            if (id === index) {
+                return elem = !elem
+            }
+            return elem
+        }))
+
+        setDisableBtn(false)
     }
 
     const onAnswerButtonClickHandler = async () => {
-        const selectedAnswerId = answers.indexOf(true)
-
-        setQuizScore(currentQuestion.answers[selectedAnswerId].isCorrect)
-
+        let correctAnswersIndex = []
+        currentQuestion.answers.map((el, index) => {
+            correctAnswersIndex.push(el.isCorrect)
+        })
+        const isAddPoint = answers.every((elem, index) => {
+            return elem === correctAnswersIndex[index]
+        })
+        setQuizScore(isAddPoint)
 
         if (questionsCounter < countQuestions) {
-            await router.push(`/quiz/${parseInt(questionsCounter) + 1}`)
+            await router.push(`/quiz/${quizIndex}/answer/${parseInt(questionsCounter) + 1}`)
         } else {
             await router.push(`/quiz/result`)
         }
@@ -49,7 +63,7 @@ export default function QuestionBlock(props) {
 
     const onSkipButtonClickHandler = async () => {
         if (questionsCounter < countQuestions) {
-            await router.push(`/quiz/${parseInt(questionsCounter) + 1}`)
+            await router.push(`/quiz/${quizIndex}/answer/${parseInt(questionsCounter) + 1}`)
         }
 
         if (questionsCounter == countQuestions) {
@@ -59,10 +73,10 @@ export default function QuestionBlock(props) {
 
 
     return (
-        <div className={style.block} id={currentQuestion.id} key={questionsCounter} >
+        <div className={style.block} key={questionsCounter}>
             <div className={style.block_header}>
                 {currentQuestion.pictureSrc !== null ?
-                    <img className={style.picture} src={currentQuestion.pictureSrc} alt={'picture'} />
+                    <img className={style.picture} src={currentQuestion.pictureSrc} alt={'picture'}/>
                     : ''
                 }
                 {currentQuestion.audioSrc !== null ?
@@ -82,18 +96,29 @@ export default function QuestionBlock(props) {
 
             </div>
             <div className={style.block_answers}>
-                {currentQuestion.answers.map((answer, index) => {
-                    return <RadioButton onClick={() => onClickAnswerHandler(index)}
-                                        text={answer.text}
-                                        id={answer.id}
-                                        isCorrect={answer.isCorrect}
-                                        selected={answers[index]}/>
-                })}
+                {currentQuestion.mode == 'radio' ?
+                    currentQuestion.answers.map((answer, index) => {
+                        return <RadioButton onClick={() => onClickAnswerHandler(index)}
+                                            text={answer.text}
+                                            key={answer.id}
+                                            id={answer.id}
+                                            isCorrect={answer.isCorrect}
+                                            selected={answers[index]}/>
+                    })
+                    : currentQuestion.answers.map((answer, index) => {
+                        return <CheckBox onClick={() => onClickCheckboxAnswerHandler(index)}
+                                         text={answer.text}
+                                         id={answer.id}
+                                         key={answer.id}
+                                         isCorrect={answer.isCorrect}
+                                         selected={answers[index]}/>
+                    })
+                }
             </div>
             <div className={style.block_btns}>
                 <SkipButton onClick={onSkipButtonClickHandler}/>
                 <AnswerButton text={'ответить'} isDisabled={disableBtn || !active} id={'answeredBtn'}
-                              onClick={onAnswerButtonClickHandler} />
+                              onClick={onAnswerButtonClickHandler}/>
             </div>
         </div>
     )
