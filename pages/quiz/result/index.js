@@ -1,12 +1,16 @@
-import styles from "../../../styles/Result.module.scss";
-import Header from "../../../components/header/Header";
 import {router} from "next/client";
-import {quizScore} from "../../../store/store";
+
+import Header from "../../../components/header/Header";
 import {AnswerButton} from "../../../components/buttons/AnswerButton";
 
-export default function Result(props) {
+import {quizScore, resetQuizScore} from "../../../store/store";
+import styles from "../../../styles/Result.module.scss";
+
+
+export default function Result() {
     const onClickHandler = async () => {
-        await router.push(`/quiz/1/answer/1`)
+        resetQuizScore();
+        await router.push(`/quiz`)
     }
 
     return (

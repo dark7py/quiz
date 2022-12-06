@@ -1,11 +1,14 @@
-import Header from "../../components/header/Header";
+import {useEffect, useState} from "react";
+
 import QuestionBlock from "../../components/question-block/QuestionBlock";
 import ProgressBar from "../../components/progress-bar/ProgressBar";
-import Timer from "../../components/timer/Timer";
-import styles from "../../styles/QuizAnswer.module.scss"
 import Sidebar from "../../components/sidebar/Sidebar";
-import {useEffect, useState} from "react";
+import Header from "../../components/header/Header";
+import Timer from "../../components/timer/Timer";
+
 import {getQuizById} from "../api/hello";
+import styles from "../../styles/QuizAnswer.module.scss"
+
 
 export const getServerSideProps = async (context) => {
     const {id} = context.params
