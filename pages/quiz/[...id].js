@@ -5,19 +5,23 @@ import Timer from "../../components/timer/Timer";
 import styles from "../../styles/QuizAnswer.module.scss"
 import Sidebar from "../../components/sidebar/Sidebar";
 import {useEffect, useState} from "react";
-import data from "../../mock";
+import {getQuizById} from "../api/hello";
 
-export const getServerSideProps = (context) => {
+export const getServerSideProps = async (context) => {
     const {id} = context.params
+    const quiz = await getQuizById(id[0])
+    delete quiz[0]._id
+
     return {
-        props: {questionsCounter: id[2], quizIndex: id[0]}
+        props: {questionsCounter: id[2], quizIndex: id[0], quizData: quiz[0].quiz[id[0]]}
     }
 }
 
 
-export default function Id({questionsCounter, quizIndex}) {
+export default function Id({questionsCounter, quizIndex, quizData}) {
     const [active, setActive] = useState(true)
-    const quiz = data.quiz[quizIndex]
+    const quiz = quizData
+    console.log(quizData);
 
     useEffect(() => {
         setActive(true)
@@ -30,7 +34,7 @@ export default function Id({questionsCounter, quizIndex}) {
                         totalTimeInMin={quiz.timeLimitInMin} quizIndex={quizIndex}/>
                 <ProgressBar countQuestions={quiz.questionsCount} answeredQuestions={questionsCounter}
                              quizIndex={quizIndex}/>
-                {quiz.isFreeAccess ? <Sidebar countQuestions={25} quizIndex={quizIndex} /> : ''}
+                {quiz.isFreeAccess ? <Sidebar countQuestions={25} quizIndex={quizIndex}/> : ''}
 
                 <div className={styles.mainBlock} key={questionsCounter}>
                     <Timer timeInSec={10} onFinish={() => {

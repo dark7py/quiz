@@ -1,9 +1,9 @@
 import styles from '../../styles/Quiz.module.scss'
-import data from "../../mock";
 import Link from "next/link";
+import {getAllTests} from "../api/hello";
 
 export default function Quiz(props) {
-    const quizes = data.quiz
+    const quizes = props.res[0].quiz;
 
     return (
         <div>
@@ -26,4 +26,15 @@ export default function Quiz(props) {
             </div>
         </div>
     )
+}
+
+export const  getServerSideProps = async () => {
+    const res = await getAllTests()
+    delete res[0]._id
+
+    return {
+        props: {
+            res
+        }
+    }
 }
