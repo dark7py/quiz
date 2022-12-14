@@ -15,7 +15,7 @@ export default function QuestionBlock(props) {
 
     let currentQuestion = {}
     data.quiz[quizIndex].questions.forEach((question) => {
-        if (question.id == questionsCounter) {
+        if (question.id === questionsCounter) {
             currentQuestion = question
         }
     })
@@ -51,6 +51,16 @@ export default function QuestionBlock(props) {
         const isAddPoint = answers.every((elem, index) => {
             return elem === correctAnswersIndex[index]
         })
+        if (isAddPoint) {
+            await fetch("api/sendResult", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify("hello")
+            })
+        }
+
         setQuizScore(isAddPoint)
 
         if (questionsCounter < countQuestions) {
@@ -66,7 +76,7 @@ export default function QuestionBlock(props) {
             await router.push(`/quiz/${quizIndex}/answer/${parseInt(questionsCounter) + 1}`)
         }
 
-        if (questionsCounter == countQuestions) {
+        if (questionsCounter === countQuestions) {
             await router.push(`/quiz/result`)
         }
     }
@@ -96,7 +106,7 @@ export default function QuestionBlock(props) {
 
             </div>
             <div className={style.block_answers}>
-                {currentQuestion.mode == 'radio' ?
+                {currentQuestion.mode === 'radio' ?
                     currentQuestion.answers.map((answer, index) => {
                         return <RadioButton onClick={() => onClickAnswerHandler(index)}
                                             text={answer.text}
