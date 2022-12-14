@@ -15,7 +15,7 @@ export default function QuestionBlock(props) {
 
     let currentQuestion = {}
     data.quiz[quizIndex].questions.forEach((question) => {
-        if (question.id === questionsCounter) {
+        if (question.id == questionsCounter) {
             currentQuestion = question
         }
     })
@@ -76,7 +76,7 @@ export default function QuestionBlock(props) {
             await router.push(`/quiz/${quizIndex}/answer/${parseInt(questionsCounter) + 1}`)
         }
 
-        if (questionsCounter === countQuestions) {
+        if (questionsCounter == countQuestions) {
             await router.push(`/quiz/result`)
         }
     }
@@ -106,7 +106,7 @@ export default function QuestionBlock(props) {
 
             </div>
             <div className={style.block_answers}>
-                {currentQuestion.mode === 'radio' ?
+                {currentQuestion.mode == 'radio' ?
                     currentQuestion.answers.map((answer, index) => {
                         return <RadioButton onClick={() => onClickAnswerHandler(index)}
                                             text={answer.text}
