@@ -45,21 +45,19 @@ export default function QuestionBlock(props) {
 
     const onAnswerButtonClickHandler = async () => {
         let correctAnswersIndex = []
-        currentQuestion.answers.map((el, index) => {
+        currentQuestion.answers.forEach((el, index) => {
             correctAnswersIndex.push(el.isCorrect)
         })
         const isAddPoint = answers.every((elem, index) => {
             return elem === correctAnswersIndex[index]
         })
-        if (isAddPoint) {
-            await fetch("api/sendResult", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify("hello")
-            })
-        }
+        await fetch("/api/sendResult", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({answer: currentQuestion, isCorrect: isAddPoint})
+        })
 
         setQuizScore(isAddPoint)
 

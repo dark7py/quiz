@@ -1,15 +1,9 @@
 import style from './Header.module.scss'
 import Link from "next/link";
+import useTime from "../../hooks/useTime";
 
 export default function Header(props) {
-    // let totalTime = props.totalTimeInSec
-    // const [time, setTime] = useState(totalTime)
-    //
-    // let timer = setTimeout(() => {
-    //     if (time > 0) {
-    //         setTime(time - 1)
-    //     }
-    // }, 1000)
+    const time = useTime(props.isResultPage, props.totalTimeInMin);
 
     return (
         <div className={style.header}>
@@ -19,9 +13,11 @@ export default function Header(props) {
                 {props.questionsCounter}/{props.totalCountQuestions}
             </div>
             <img className={style.header_icon} src={'/timeIcon.png'} alt={'icon'}/>
-            <div className={style.header_time}>
-                {props.totalTimeInMin}:00
-            </div>
+            {!props.isResultPage &&
+                <div className={style.header_time}>
+                    {time}
+                </div>
+            }
 
             <h1 className={style.header_text}>{props.text}</h1>
             <Link href={'/quiz'}>

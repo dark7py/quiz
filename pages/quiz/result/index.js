@@ -5,6 +5,7 @@ import {AnswerButton} from "../../../components/buttons/AnswerButton";
 
 import {quizScore, resetQuizScore} from "../../../store/store";
 import styles from "../../../styles/Result.module.scss";
+import {useEffect} from "react";
 // import {getResults} from "../../api/getResults";
 //
 // export const getServerSideProps = async () => {
@@ -20,6 +21,15 @@ import styles from "../../../styles/Result.module.scss";
 
 export default function Result() {
     //console.log(results);
+    useEffect(() => {
+        fetch("api/getResults", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        }).then(res => console.log(res))
+    }, [])
+
     const onClickHandler = async () => {
         resetQuizScore();
         await router.push(`/quiz`)
@@ -27,7 +37,7 @@ export default function Result() {
 
     return (
         <>
-            <Header text={'РУСЬ И ЗОЛОТАЯ ОРДА'} totalCountQuestions={3} questionsCounter={3}/>
+            <Header text={'РУСЬ И ЗОЛОТАЯ ОРДА'} totalCountQuestions={3} questionsCounter={3} isResultPage={true} />
 
             <div className={styles.mainBlock}>
                 <h1>Вы прошли тест!</h1>
