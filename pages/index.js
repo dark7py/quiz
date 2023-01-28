@@ -24,12 +24,6 @@ export default function Home() {
               <p>let&apos;s solve a next quiz</p>
             </a>
           </Link>
-          <Link href={'/map'}>
-            <a  className={styles.card}>
-              <h2>Map &rarr;</h2>
-              <p>leaflet map</p>
-            </a>
-          </Link>
 
           <Link href={'/page'}>
             <a className={styles.card}>
